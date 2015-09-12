@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace FileReader
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StreamReader reader = new StreamReader("..\\..\\Sample.txt");//the file that we created/the file that needs to be read
+            using (reader)//pass through the variable that we want to read
+            //using requires more curlies
+            {
+                //will help us establish a counter
+                int lineNumber = 0;
+
+                //read first line of final
+                string line = reader.ReadLine();
+
+                //Read other lines
+                while (line != null)
+                {
+                    lineNumber++;
+                    Console.WriteLine("Line {0}: {1}", lineNumber, line);
+                    line = reader.ReadLine();
+                }
+
+                //reader.Close(); this can be replaced with using(reader) at the top
+                Console.ReadLine();
+            }
+        }
+    }
+}
+
+
+/*file being passed:
+Sample.txt
+
+This is our first line.
+This is our second line.
+This is our third line.
+This is our fourth line.
+*/
