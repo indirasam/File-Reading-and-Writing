@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace FileWriter
+{
+    class Program
+    {
+        static void Main()
+        {
+            //Create an instance of StreamWriter to write a file
+            StreamWriter writer = new StreamWriter("..\\..\\Answers.txt");
+
+            //the using statement will atuo-close the file
+            using(writer)
+            { 
+            //write line
+            writer.WriteLine("Hello World");
+
+            }
+        }
+    }
+}
