@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace AutomatedInterview
+{
+    class Program
+    {
+        static void Main(string[] args)
+
+        {
+            StringBuilder sb = new StringBuilder();
+            StreamReader interview_quest = new StreamReader("..\\..\\interview_questions.txt");
+            StreamWriter answers = new StreamWriter("interview_answers.txt");
+
+            using(interview_quest)
+            
+
+            {
+                string ans = "";
+                string line = interview_quest.ReadLine();
+
+                while (line != null)
+                {
+                    
+                    Console.WriteLine(line);
+                    ans = Console.ReadLine();
+                    sb.Append(ans);
+                    sb.Append("\n");
+                    line = interview_quest.ReadLine();
+                }
+            }
+            using(answers)
+            {
+                answers.Write(sb.ToString());
+            }
+        }
+    }
+}
