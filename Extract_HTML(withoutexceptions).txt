@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Text.RegularExpressions;
+
+
+namespace ExtractHTML
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StringBuilder sb = new StringBuilder();//instantiate
+            StreamReader input = new StreamReader("..\\..\\HTMLtest.html");//instantiate
+            StreamWriter output = new StreamWriter("Solution.txt");//instantiate
+           
+
+            using (input)
+            {
+
+               
+                string line = input.ReadLine();//reads the file
+                //int counter = 0;
+
+                while (line != null)
+                {
+                    
+                    int start = line.IndexOf("<"); //assigns the defintion of start
+                    int end = line.IndexOf(">");//assigns the defintion of end
+
+                    while (start != -1) // while start is valid
+                    {
+                        
+                        line = line.Remove(start, end - start + 1); //remove places in the code starting with < and ending with >
+                        start = line.IndexOf("<");// keeps looking for starts
+                        end = line.IndexOf(">");//keeps looking for finishes
+                        
+                    }
+
+                    line = line.Trim();//removes white space
+                    if (line != "")//tells the code to do something if the line is not empty
+                    {
+                        sb.AppendLine(line);//appends the stringbuilder
+                    }
+                    //Console.WriteLine(line);
+                    line = input.ReadLine();//reads the line
+                    
+                }
+            }
+            using (output)
+            {
+                output.Write(sb.ToString());//coverts the contains of the stringbuilder to string
+            Console.Write(sb.ToString());//coverts the contains of the stringbuilder to string and prints
+
+            }
+            Console.ReadLine();//keeps console open
+        }
+    }
+}
